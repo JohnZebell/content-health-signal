@@ -41,6 +41,9 @@ A high-volume email racks up the most raw unsubscribes just by being sent more. 
 | 8 | Generic newsletter | 16.0 | 0.50 | 0.4 | Review - engagement far below sequence norm |
  
 The Hard-sell promo has a normal open rate, so a standard dashboard would leave it alone. This flags it because it drives people out at 5.3x the rate of a typical email in the sequence. The Generic newsletter isn't toxic, just dead weight, flagged for a different reason.
+
+## Running it live
+In production this runs on a schedule, not on demand. Point a trigger at the scoring query every 15 to 60 minutes. Anything that trips the "burning leads" flag fires an instant Slack or email alert to the marketing owner, so a toxic piece gets caught and paused the same day instead of quietly leaking for a week. The lower-priority flags (dead weight, elevated but not toxic) roll up into a periodic digest rather than an instant ping, so the urgent stuff stands out and the noise stays out of the way. Same scheduled SQL plus alerting pattern as revops-data-telemetry, pointed at content instead of pipeline.
  
 ## Honest scope
  
